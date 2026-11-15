@@ -42,11 +42,13 @@ const rooms = {
     }
 };
 
-// OPEN HOMEPAGE
+// OPEN ACCOUNT SCREEN
+
+const authScreen = document.getElementById("authScreen");
 
 enterButton.addEventListener("click", function () {
     welcomeScreen.classList.add("hidden");
-    homeScreen.classList.remove("hidden");
+    authScreen.style.display = "block";
 });
 
 // HIDE ALL ROOM CONTENT
@@ -169,6 +171,54 @@ if (loginButton) {
         }
 
         authMessage.textContent = "Welcome back!";
+                }
+
+        authMessage.textContent = "Logging in...";
+
+        const { error } = await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+        if (error) {
+            authMessage.textContent = error.message;
+            return;
+        }
+
+        authMessage.textContent = "Welcome back!";
+            }
+
+        authMessage.textContent = "Logging in...";
+
+        const { error } = await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+        if (error) {
+            authMessage.textContent = error.message;
+            return;
+        }
+
+        authMessage.textContent = "Welcome back!";
+
+        }
+
+        authMessage.textContent = "Logging in...";
+
+        const { error } = await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+        if (error) {
+            authMessage.textContent = error.message;
+            return;
+        }
+
+        authMessage.textContent = "Welcome back!";
+authScreen.style.display = "none";
+homeScreen.classList.remove("hidden");
     });
 }
 
@@ -185,3 +235,67 @@ if (logoutButton) {
         location.reload();
     });
 }
+
+    });
+}
+
+// LOG OUT
+if (logoutButton) {
+    logoutButton.addEventListener("click", async () => {
+        const { error } = await supabaseClient.auth.signOut();
+
+        if (error) {
+            alert(error.message);
+            return;
+        }
+
+        location.reload();
+    });
+}
+
+    });
+}
+
+// LOG OUT
+if (logoutButton) {
+    logoutButton.addEventListener("click", async () => {
+        const { error } = await supabaseClient.auth.signOut();
+
+        if (error) {
+            alert(error.message);
+            return;
+        }
+
+        location.reload();
+    });
+}
+
+    });
+}
+
+// LOG OUT
+if (logoutButton) {
+    logoutButton.addEventListener("click", async () => {
+        const { error } = await supabaseClient.auth.signOut();
+
+        if (error) {
+            alert(error.message);
+            return;
+        }
+
+        location.reload();
+    });
+}
+// CHECK EXISTING LOGIN SESSION
+
+async function checkLogin() {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+
+    if (session) {
+        welcomeScreen.classList.add("hidden");
+        authScreen.style.display = "none";
+        homeScreen.classList.remove("hidden");
+    }
+}
+
+checkLogin();
