@@ -7,6 +7,7 @@ const enterButton = document.getElementById("enterButton");
 const backButton = document.getElementById("backButton");
 
 const roomCards = document.querySelectorAll(".room-card");
+console.log("Room buttons found:", roomCards.length);
 
 const roomIcon = document.getElementById("roomIcon");
 const roomTitle = document.getElementById("roomTitle");
