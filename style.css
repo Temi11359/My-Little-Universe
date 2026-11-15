@@ -410,3 +410,124 @@ button {
     color: #88778a;
     line-height: 1.7;
 }
+
+/* =========================
+   DIARY ROOM
+========================= */
+
+.diary-area {
+    width: 100%;
+    max-width: 500px;
+    margin: 35px auto;
+    text-align: left;
+}
+
+/* INPUT FIELDS */
+
+.diary-area input,
+.diary-area textarea {
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 15px;
+
+    border: 1px solid #e3d2e7;
+    border-radius: 13px;
+
+    background: #fffaff;
+    color: #59445d;
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+
+    outline: none;
+}
+
+.diary-area input {
+    font-weight: 700;
+}
+
+.diary-area textarea {
+    line-height: 1.8;
+    resize: vertical;
+}
+
+.diary-area input:focus,
+.diary-area textarea:focus {
+    border-color: #a987b8;
+    box-shadow: 0 0 8px #a987b822;
+}
+
+/* SAVE BUTTON */
+
+.diary-area button {
+    width: 100%;
+    padding: 15px;
+
+    border: none;
+    border-radius: 25px;
+
+    background: #a987b8;
+    color: white;
+
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* MESSAGE */
+
+#diaryMessage {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    margin-top: 12px;
+    color: #87649b;
+}
+
+/* PREVIOUS ENTRIES */
+
+.entries-section {
+    margin-top: 40px;
+}
+
+.entries-section h3 {
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.diary-entry {
+    background: #f0e5f2;
+    border-radius: 15px;
+    padding: 18px;
+    margin-bottom: 15px;
+}
+
+.diary-entry h4 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.diary-entry small {
+    font-family: Arial, sans-serif;
+    color: #927b94;
+}
+
+.diary-entry p {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.8;
+    margin-top: 12px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+/* DELETE BUTTON */
+
+.delete-entry {
+    margin-top: 15px;
+    background: #d9a6b8 !important;
+    padding: 9px 15px !important;
+    width: auto !important;
+    font-size: 11px;
+}
