@@ -1,5 +1,12 @@
 
-// GET THE HTML ELEMENTS
+// ======================================
+// MY LITTLE UNIVERSE
+// Clean JavaScript
+// ======================================
+
+
+// 1. GET HTML ELEMENTS
+
 const welcomeScreen = document.getElementById("welcomeScreen");
 const homeScreen = document.getElementById("homeScreen");
 const roomScreen = document.getElementById("roomScreen");
@@ -13,22 +20,63 @@ const roomIcon = document.getElementById("roomIcon");
 const roomTitle = document.getElementById("roomTitle");
 const roomDescription = document.getElementById("roomDescription");
 
+const comingSoon = document.querySelector(".coming-soon");
+
+
+// Room sections
+
 const diaryArea = document.getElementById("diaryArea");
+const memoryArea = document.getElementById("memoryArea");
+const dreamsArea = document.getElementById("dreamsArea");
+const favouritesArea = document.getElementById("favouritesArea");
+
+
+// Diary elements
+
 const diaryTitle = document.getElementById("diaryTitle");
 const diaryText = document.getElementById("diaryText");
 const saveDiary = document.getElementById("saveDiary");
 const diaryMessage = document.getElementById("diaryMessage");
 const diaryEntries = document.getElementById("diaryEntries");
 
-const comingSoon = document.querySelector(".coming-soon");
+
+// Memories elements
+
+const memoryTitle = document.getElementById("memoryTitle");
+const memoryText = document.getElementById("memoryText");
+const saveMemory = document.getElementById("saveMemory");
+const memoryMessage = document.getElementById("memoryMessage");
+const memoryEntries = document.getElementById("memoryEntries");
 
 
-// ROOM INFORMATION
+// Dreams elements
+
+const dreamTitle = document.getElementById("dreamTitle");
+const dreamDescription = document.getElementById("dreamDescription");
+const saveDream = document.getElementById("saveDream");
+const dreamMessage = document.getElementById("dreamMessage");
+const dreamsEntries = document.getElementById("dreamsEntries");
+
+
+// Favourites elements
+
+const favouriteTitle = document.getElementById("favouriteTitle");
+const favouriteCategory = document.getElementById("favouriteCategory");
+const favouriteDescription = document.getElementById("favouriteDescription");
+const saveFavourite = document.getElementById("saveFavourite");
+const favouriteMessage = document.getElementById("favouriteMessage");
+const favouriteEntries = document.getElementById("favouriteEntries");
+
+
+// ======================================
+// 2. ROOM INFORMATION
+// ======================================
+
 const rooms = {
     diary: {
-        icon: "📖",
+        icon: "📔",
         title: "My Diary",
-        description: "A safe little space for my thoughts and feelings."
+        description: "A little space for all my thoughts and feelings."
     },
 
     memories: {
@@ -40,23 +88,43 @@ const rooms = {
     dreams: {
         icon: "🌷",
         title: "My Dreams",
-        description: "Everything I hope to become and achieve."
+        description: "All the things I hope to achieve someday."
     },
 
     favourites: {
-        icon: "♡",
-        title: "Little Things",
-        description: "All the little things that make me happy."
+        icon: "🎀",
+        title: "My Little Things",
+        description: "Everything I love, all in one place."
     }
 };
 
 
-// ENTER THE HOMEPAGE
-enterButton.addEventListener("click", function () {
-    welcomeScreen.classList.add("hidden");
-    homeScreen.classList.remove("hidden");
-});
+// ======================================
+// 3. WELCOME SCREEN
+// ======================================
 
+if (enterButton) {
+    enterButton.addEventListener("click", function () {
+        welcomeScreen.classList.add("hidden");
+        homeScreen.classList.remove("hidden");
+    });
+}
+
+
+// ======================================
+// 4. OPEN AND CLOSE ROOMS
+// ======================================
+
+function hideAllRooms() {
+    diaryArea.classList.add("hidden");
+    memoryArea.classList.add("hidden");
+    dreamsArea.classList.add("hidden");
+    favouritesArea.classList.add("hidden");
+
+    if (comingSoon) {
+        comingSoon.classList.add("hidden");
+    }
+}
 
 
 roomCards.forEach(function (card) {
@@ -64,415 +132,341 @@ roomCards.forEach(function (card) {
     card.addEventListener("click", function () {
 
         const selectedRoom = card.dataset.room;
+
+        hideAllRooms();
+
         const room = rooms[selectedRoom];
 
         if (!room) return;
-
-        homeScreen.classList.add("hidden");
-        roomScreen.classList.remove("hidden");
 
         roomIcon.textContent = room.icon;
         roomTitle.textContent = room.title;
         roomDescription.textContent = room.description;
 
-        // Hide all room sections first
-        diaryArea.classList.add("hidden");
-        memoryArea.classList.add("hidden");
-        dreamsArea.classList.add("hidden");
-        favouritesArea.classList.add("hidden");
-
-        // Show Coming Soon only for unfinished rooms
-        comingSoon.style.display = "block";
+        homeScreen.classList.add("hidden");
+        roomScreen.classList.remove("hidden");
 
         if (selectedRoom === "diary") {
             diaryArea.classList.remove("hidden");
-            comingSoon.style.display = "none";
             displayDiaryEntries();
         }
 
-        if (selectedRoom === "memories") {
+        else if (selectedRoom === "memories") {
             memoryArea.classList.remove("hidden");
-            comingSoon.style.display = "none";
             displayMemories();
         }
 
-        if (selectedRoom === "dreams") {
+        else if (selectedRoom === "dreams") {
             dreamsArea.classList.remove("hidden");
-            comingSoon.style.display = "none";
             displayDreams();
         }
 
-        if (selectedRoom === "favourites") {
+        else if (selectedRoom === "favourites") {
             favouritesArea.classList.remove("hidden");
-            comingSoon.style.display = "none";
             displayFavourites();
         }
 
+        else if (comingSoon) {
+            comingSoon.classList.remove("hidden");
+        }
+
     });
 
 });
 
-    
 
-        if (selectedRoom === "diary") {
-            diaryArea.classList.remove("hidden");
-            comingSoon.classList.add("hidden");
-            displayDiaryEntries();
-        }
-if (selectedRoom === "memories") {
-    memoryArea.classList.remove("hidden");
-    comingSoon.classList.add("hidden");
-    displayMemories();
-}
-        if (selectedRoom === "dreams") {
-    dreamsArea.classList.remove("hidden");
-    comingSoon.style.display = "none";
-    displayDreams();
-        }
-        if (selectedRoom === "favourites") {
-    favouritesArea.classList.remove("hidden");
-    comingSoon.style.display = "none";
-    displayFavourites();
-        }
+if (backButton) {
+    backButton.addEventListener("click", function () {
+        roomScreen.classList.add("hidden");
+        homeScreen.classList.remove("hidden");
+        hideAllRooms();
     });
-
-
-});
-
-
-// GO BACK TO HOMEPAGE
-backButton.addEventListener("click", function () {
-    roomScreen.classList.add("hidden");
-    homeScreen.classList.remove("hidden");
-});
-
-
-// GET SAVED DIARY ENTRIES
-function getDiaryEntries() {
-    return JSON.parse(localStorage.getItem("myDiaryEntries")) || [];
 }
 
 
-// SAVE A DIARY ENTRY
-saveDiary.addEventListener("click", function () {
+// ======================================
+// 5. STORAGE FUNCTIONS
+// ======================================
 
-    const title = diaryTitle.value.trim();
-    const content = diaryText.value.trim();
+function getEntries(key) {
+    try {
+        return JSON.parse(localStorage.getItem(key)) || [];
+    } catch (error) {
+        return [];
+    }
+}
 
-    if (!title || !content) {
-        diaryMessage.textContent = "Please add a title and your thoughts first.";
-        return;
+
+function saveEntries(key, entries) {
+    localStorage.setItem(key, JSON.stringify(entries));
+}
+
+
+function createEntry(title, description, extra = "") {
+
+    const card = document.createElement("div");
+    card.className = "entry-card";
+
+    const heading = document.createElement("h3");
+    heading.textContent = title;
+
+    const content = document.createElement("p");
+    content.textContent = description;
+
+    const date = document.createElement("small");
+    date.textContent = new Date().toLocaleDateString();
+
+    card.appendChild(heading);
+    card.appendChild(content);
+
+    if (extra) {
+        const extraText = document.createElement("small");
+        extraText.textContent = extra;
+        card.appendChild(extraText);
     }
 
-    const entries = getDiaryEntries();
+    card.appendChild(date);
 
-    const newEntry = {
-        title: title,
-        content: content,
-        date: new Date().toLocaleDateString()
-    };
-
-    entries.unshift(newEntry);
-
-    localStorage.setItem("myDiaryEntries", JSON.stringify(entries));
-
-    diaryTitle.value = "";
-    diaryText.value = "";
-
-    diaryMessage.textContent = "Your entry has been saved! ♡";
-
-    displayDiaryEntries();
-
-});
+    return card;
+}
 
 
-// DISPLAY PREVIOUS DIARY ENTRIES
+// ======================================
+// 6. DIARY
+// ======================================
+
 function displayDiaryEntries() {
 
-    const entries = getDiaryEntries();
+    const entries = getEntries("myDiary");
 
     diaryEntries.innerHTML = "";
 
-    if (entries.length === 0) {
-        diaryEntries.textContent = "Your diary is waiting for its first story.";
-        return;
-    }
-
     entries.forEach(function (entry) {
-
-        const entryCard = document.createElement("div");
-        entryCard.className = "diary-entry";
-
-        const heading = document.createElement("h4");
-        heading.textContent = entry.title;
-
-        const date = document.createElement("small");
-        date.textContent = entry.date;
-
-        const paragraph = document.createElement("p");
-        paragraph.textContent = entry.content;
-
-        entryCard.appendChild(heading);
-        entryCard.appendChild(date);
-        entryCard.appendChild(paragraph);
-
-        diaryEntries.appendChild(entryCard);
-
+        diaryEntries.appendChild(
+            createEntry(entry.title, entry.text)
+        );
     });
 
 }
 
-// MEMORIES ROOM
-const memoryArea = document.getElementById("memoryArea");
-const memoryTitle = document.getElementById("memoryTitle");
-const memoryText = document.getElementById("memoryText");
-const saveMemory = document.getElementById("saveMemory");
-const memoryMessage = document.getElementById("memoryMessage");
-const memoryEntries = document.getElementById("memoryEntries");
 
+if (saveDiary) {
+    saveDiary.addEventListener("click", function () {
 
-// GET SAVED MEMORIES
-function getMemories() {
-    return JSON.parse(localStorage.getItem("myMemories")) || [];
+        const title = diaryTitle.value.trim();
+        const text = diaryText.value.trim();
+
+        if (!title || !text) {
+            diaryMessage.textContent = "Please fill in both fields.";
+            return;
+        }
+
+        const entries = getEntries("myDiary");
+
+        entries.unshift({
+            title: title,
+            text: text
+        });
+
+        saveEntries("myDiary", entries);
+
+        diaryTitle.value = "";
+        diaryText.value = "";
+
+        diaryMessage.textContent = "Your diary entry has been saved 💗";
+
+        displayDiaryEntries();
+
+    });
 }
 
 
-// SAVE A MEMORY
-saveMemory.addEventListener("click", function () {
+// ======================================
+// 7. MEMORIES
+// ======================================
 
-    const title = memoryTitle.value.trim();
-    const content = memoryText.value.trim();
-
-    if (!title || !content) {
-        memoryMessage.textContent = "Please fill in both fields first.";
-        return;
-    }
-
-    const memories = getMemories();
-
-    memories.unshift({
-        title: title,
-        content: content,
-        date: new Date().toLocaleDateString()
-    });
-
-    localStorage.setItem("myMemories", JSON.stringify(memories));
-
-    memoryTitle.value = "";
-    memoryText.value = "";
-
-    memoryMessage.textContent = "Memory saved successfully!";
-
-    displayMemories();
-});
-
-
-// DISPLAY SAVED MEMORIES
 function displayMemories() {
 
-    const memories = getMemories();
+    const entries = getEntries("myMemories");
 
     memoryEntries.innerHTML = "";
 
-    if (memories.length === 0) {
-        memoryEntries.textContent = "No memories saved yet.";
-        return;
-    }
-
-    memories.forEach(function (memory) {
-
-        const card = document.createElement("div");
-        card.className = "diary-entry";
-
-        const heading = document.createElement("h4");
-        heading.textContent = memory.title;
-
-        const date = document.createElement("small");
-        date.textContent = memory.date;
-
-        const paragraph = document.createElement("p");
-        paragraph.textContent = memory.content;
-
-        card.appendChild(heading);
-        card.appendChild(date);
-        card.appendChild(paragraph);
-
-        memoryEntries.appendChild(card);
+    entries.forEach(function (entry) {
+        memoryEntries.appendChild(
+            createEntry(entry.title, entry.text)
+        );
     });
-}
 
-// MY DREAMS ROOM
-
-const dreamsArea = document.getElementById("dreamsArea");
-const dreamTitle = document.getElementById("dreamTitle");
-const dreamDescription = document.getElementById("dreamDescription");
-const saveDream = document.getElementById("saveDream");
-const dreamMessage = document.getElementById("dreamMessage");
-const dreamEntries = document.getElementById("dreamEntries");
-
-
-// GET SAVED DREAMS
-function getDreams() {
-    return JSON.parse(localStorage.getItem("myDreams")) || [];
 }
 
 
-// SAVE A DREAM
-saveDream.addEventListener("click", function () {
+if (saveMemory) {
+    saveMemory.addEventListener("click", function () {
 
-    const title = dreamTitle.value.trim();
-    const description = dreamDescription.value.trim();
+        const title = memoryTitle.value.trim();
+        const text = memoryText.value.trim();
 
-    if (!title || !description) {
-        dreamMessage.textContent = "Please fill in both fields.";
-        return;
-    }
+        if (!title || !text) {
+            memoryMessage.textContent = "Please fill in both fields.";
+            return;
+        }
 
-    const dreams = getDreams();
+        const entries = getEntries("myMemories");
 
-    dreams.unshift({
-        title: title,
-        description: description,
-        completed: false
+        entries.unshift({
+            title: title,
+            text: text
+        });
+
+        saveEntries("myMemories", entries);
+
+        memoryTitle.value = "";
+        memoryText.value = "";
+
+        memoryMessage.textContent = "Memory saved successfully 📸";
+
+        displayMemories();
+
     });
-
-    localStorage.setItem("myDreams", JSON.stringify(dreams));
-
-    dreamTitle.value = "";
-    dreamDescription.value = "";
-
-    dreamMessage.textContent = "Dream added successfully!";
-
-    displayDreams();
-});
+}
 
 
-// DISPLAY DREAMS
+// ======================================
+// 8. DREAMS
+// ======================================
+
 function displayDreams() {
 
-    const dreams = getDreams();
+    const entries = getEntries("myDreams");
 
-    dreamEntries.innerHTML = "";
+    dreamsEntries.innerHTML = "";
 
-    if (dreams.length === 0) {
-        dreamEntries.textContent = "Your dream board is waiting for you.";
-        return;
-    }
+    entries.forEach(function (entry, index) {
 
-    dreams.forEach(function (dream, index) {
-
-        const card = document.createElement("div");
-        card.className = "diary-entry";
-
-        const heading = document.createElement("h4");
-        heading.textContent = dream.title;
-
-        const description = document.createElement("p");
-        description.textContent = dream.description;
-
-        const status = document.createElement("p");
-        status.textContent = dream.completed ? "Completed ✓" : "Still dreaming...";
+        const card = createEntry(
+            entry.title,
+            entry.description,
+            entry.completed ? "Completed ✨" : "Still dreaming..."
+        );
 
         const button = document.createElement("button");
-        button.textContent = dream.completed ? "Mark as unfinished" : "Mark as completed";
+
+        button.textContent = entry.completed
+            ? "Mark as unfinished"
+            : "Mark as completed";
 
         button.addEventListener("click", function () {
 
-            dreams[index].completed = !dreams[index].completed;
+            const updatedEntries = getEntries("myDreams");
 
-            localStorage.setItem("myDreams", JSON.stringify(dreams));
+            updatedEntries[index].completed =
+                !updatedEntries[index].completed;
+
+            saveEntries("myDreams", updatedEntries);
 
             displayDreams();
+
         });
 
-        card.appendChild(heading);
-        card.appendChild(description);
-        card.appendChild(status);
         card.appendChild(button);
+        dreamsEntries.appendChild(card);
 
-        dreamEntries.appendChild(card);
     });
-}
 
-// LITTLE THINGS ROOM
-
-const favouritesArea = document.getElementById("favouritesArea");
-const favouriteTitle = document.getElementById("favouriteTitle");
-const favouriteCategory = document.getElementById("favouriteCategory");
-const favouriteDescription = document.getElementById("favouriteDescription");
-const saveFavourite = document.getElementById("saveFavourite");
-const favouriteMessage = document.getElementById("favouriteMessage");
-const favouriteEntries = document.getElementById("favouriteEntries");
-
-
-// GET SAVED FAVOURITES
-function getFavourites() {
-    return JSON.parse(localStorage.getItem("myFavourites")) || [];
 }
 
 
-// SAVE A FAVOURITE
-saveFavourite.addEventListener("click", function () {
+if (saveDream) {
+    saveDream.addEventListener("click", function () {
 
-    const title = favouriteTitle.value.trim();
-    const category = favouriteCategory.value;
-    const description = favouriteDescription.value.trim();
+        const title = dreamTitle.value.trim();
+        const description = dreamDescription.value.trim();
 
-    if (!title || !category || !description) {
-        favouriteMessage.textContent = "Please complete all the fields.";
-        return;
-    }
+        if (!title || !description) {
+            dreamMessage.textContent = "Please fill in both fields.";
+            return;
+        }
 
-    const favourites = getFavourites();
+        const entries = getEntries("myDreams");
 
-    favourites.unshift({
-        title: title,
-        category: category,
-        description: description
+        entries.unshift({
+            title: title,
+            description: description,
+            completed: false
+        });
+
+        saveEntries("myDreams", entries);
+
+        dreamTitle.value = "";
+        dreamDescription.value = "";
+
+        dreamMessage.textContent = "Dream added to your list 🌷";
+
+        displayDreams();
+
     });
-
-    localStorage.setItem("myFavourites", JSON.stringify(favourites));
-
-    favouriteTitle.value = "";
-    favouriteCategory.value = "";
-    favouriteDescription.value = "";
-
-    favouriteMessage.textContent = "Added to your little collection!";
-
-    displayFavourites();
-});
+}
 
 
-// DISPLAY FAVOURITES
+// ======================================
+// 9. FAVOURITES
+// ======================================
+
 function displayFavourites() {
 
-    const favourites = getFavourites();
+    const entries = getEntries("myFavourites");
 
     favouriteEntries.innerHTML = "";
 
-    if (favourites.length === 0) {
-        favouriteEntries.textContent = "Your collection is waiting for lovely things.";
-        return;
-    }
+    entries.forEach(function (entry) {
 
-    favourites.forEach(function (item) {
+        favouriteEntries.appendChild(
+            createEntry(
+                entry.title,
+                entry.description,
+                entry.category
+            )
+        );
 
-        const card = document.createElement("div");
-        card.className = "diary-entry";
+    });
 
-        const heading = document.createElement("h4");
-        heading.textContent = item.title;
+}
 
-        const category = document.createElement("small");
-        category.textContent = item.category;
 
-        const description = document.createElement("p");
-        description.textContent = item.description;
+if (saveFavourite) {
+    saveFavourite.addEventListener("click", function () {
 
-        card.appendChild(heading);
-        card.appendChild(category);
-        card.appendChild(description);
+        const title = favouriteTitle.value.trim();
+        const category = favouriteCategory.value.trim();
+        const description = favouriteDescription.value.trim();
 
-        favouriteEntries.appendChild(card);
+        if (!title || !category || !description) {
+            favouriteMessage.textContent = "Please fill in all fields.";
+            return;
+        }
+
+        const entries = getEntries("myFavourites");
+
+        entries.unshift({
+            title: title,
+            category: category,
+            description: description
+        });
+
+        saveEntries("myFavourites", entries);
+
+        favouriteTitle.value = "";
+        favouriteCategory.value = "";
+        favouriteDescription.value = "";
+
+        favouriteMessage.textContent = "Added to your little collection 🎀";
+
+        displayFavourites();
+
     });
 }
+
+
+// ======================================
+// END OF MY LITTLE UNIVERSE
+// ======================================
