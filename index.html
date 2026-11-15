@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4e4f4">
 
-    <title>My Little Universe</title>
+    <title>My Little Universe ♡</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -17,13 +18,15 @@
         <div class="welcome-content">
             <span class="little-star">✦</span>
 
-            <p class="greeting">A LITTLE WORLD OF MY OWN</p>
+            <p class="greeting">
+                A LITTLE PLACE CALLED MINE
+            </p>
 
-            <h1>Welcome to<br>My Little Universe</h1>
+            <h1>Welcome to my universe ♡</h1>
 
             <p class="subtitle">
-                A place for my thoughts, dreams,
-                memories and everything in between.
+                A world filled with dreams, memories,
+                little joys and everything that makes me me.
             </p>
 
             <button id="enterButton">
@@ -31,81 +34,169 @@
             </button>
 
             <p class="footer-note">
-                made with love, just for me ♡
+                Made with love, just for me ♡
             </p>
         </div>
     </section>
 
 
-    <!-- MAIN HOMEPAGE -->
-    <main id="homeScreen" class="home-screen hidden">
+    <!-- HOMEPAGE -->
+    <main class="home-screen hidden" id="homeScreen">
 
+        <!-- FLOATING DECORATIONS -->
+        <div class="floating-decoration decoration-one">✧</div>
+        <div class="floating-decoration decoration-two">♡</div>
+        <div class="floating-decoration decoration-three">✦</div>
+        <div class="floating-decoration decoration-four">🦋</div>
+
+        <!-- HEADER -->
         <header class="top-bar">
-            <a href="#" class="logo">my little universe <span>✦</span></a>
-            <span class="top-note">a world of my own ♡</span>
+            <a href="#" class="logo">
+                my little universe <span>✦</span>
+            </a>
+
+            <p class="top-note">
+                a world of my own ♡
+            </p>
         </header>
 
+
+        <!-- HERO SECTION -->
         <section class="hero">
-            <p class="small-heading">YOUR OWN LITTLE CORNER OF THE WORLD</p>
 
-            <h2>Hello, lovely soul <span>♡</span></h2>
+            <div class="hero-text">
+                <p class="small-heading">
+                    YOUR OWN LITTLE CORNER OF THE WORLD ✧
+                </p>
 
-            <p>
-                Take a breath. You're exactly where you need to be.
-                What would you like to explore today?
-            </p>
+                <h2>
+                    Hello, lovely soul
+                    <span>♡</span>
+                </h2>
+
+                <p>
+                    Take a breath. You're exactly where
+                    you need to be. What would you like
+                    to explore today?
+                </p>
+
+                <div class="hero-clock">
+                    <span id="liveDate">A beautiful day</span>
+                    <strong id="liveClock">00:00:00</strong>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <img
+                    src="universe-hero.png"
+                    alt="A magical universe beneath a crescent moon"
+                >
+            </div>
+
         </section>
 
+
+        <!-- ROOMS -->
         <section class="rooms-section">
+
             <div class="section-heading">
                 <div>
-                    <p class="small-heading">EXPLORE YOUR WORLD</p>
-                    <h3>Your little rooms</h3>
+                    <p class="small-heading">
+                        EXPLORE YOUR WORLD
+                    </p>
+
+                    <h3>Your little rooms ♡</h3>
                 </div>
+
                 <span class="sparkle">✧</span>
             </div>
 
+
             <div class="rooms-grid">
 
-                <button class="room-card diary" data-room="diary">
+                <button class="room-card diary"
+                    data-room="diary">
+
                     <span class="room-icon">📖</span>
                     <span class="room-name">My Diary</span>
-                    <span class="room-description">Thoughts & feelings</span>
+                    <span class="room-description">
+                        Thoughts & feelings
+                    </span>
                     <span class="room-arrow">↗</span>
+
                 </button>
 
-                <button class="room-card memories" data-room="memories">
+
+                <button class="room-card memories"
+                    data-room="memories">
+
                     <span class="room-icon">📸</span>
                     <span class="room-name">Memories</span>
-                    <span class="room-description">Little moments to keep</span>
+                    <span class="room-description">
+                        Little moments to keep
+                    </span>
                     <span class="room-arrow">↗</span>
+
                 </button>
 
-                <button class="room-card dreams" data-room="dreams">
-                    <span class="room-icon">🌷</span>
+
+                <button class="room-card dreams"
+                    data-room="dreams">
+
+                    <span class="room-icon">🌙</span>
                     <span class="room-name">My Dreams</span>
-                    <span class="room-description">Plans & aspirations</span>
+                    <span class="room-description">
+                        Plans & aspirations
+                    </span>
                     <span class="room-arrow">↗</span>
+
                 </button>
 
-                <button class="room-card favourites" data-room="favourites">
+
+                <button class="room-card favourites"
+                    data-room="favourites">
+
                     <span class="room-icon">💌</span>
                     <span class="room-name">Little Things</span>
-                    <span class="room-description">Things I adore</span>
+                    <span class="room-description">
+                        Things I adore
+                    </span>
                     <span class="room-arrow">↗</span>
+
                 </button>
 
             </div>
+
         </section>
 
+
+        <!-- DAILY REMINDER -->
         <section class="daily-note">
-            <span>✧ A LITTLE REMINDER</span>
-            <p>You are allowed to grow at your own pace.</p>
-            <small>Take your time. You're becoming.</small>
+
+            <span>✧ TODAY'S LITTLE REMINDER</span>
+
+            <p id="dailyQuote">
+                You are allowed to grow at your own pace. ♡
+            </p>
+
+            <small>
+                A little kindness for yourself today.
+            </small>
+
+            <button id="newQuote">
+                Another reminder ↻
+            </button>
+
         </section>
 
+
+        <!-- FOOTER -->
         <footer class="home-footer">
-            made with love, just for me ♡
+            <p>
+                Made with ♡ for my peace of mind
+            </p>
+
+            <span>dream · write · explore · be happy</span>
         </footer>
 
     </main>
@@ -113,50 +204,77 @@
 
     <!-- ROOM VIEW -->
     <section id="roomScreen" class="room-screen hidden">
-        <button id="backButton" class="back-button">← Back to my universe</button>
+
+        <button id="backButton" class="back-button">
+            ← Back to my universe
+        </button>
 
         <div class="room-content">
-            <span id="roomIcon" class="room-big-icon">📖</span>
-            <p class="small-heading">YOUR LITTLE CORNER</p>
+
+            <span id="roomIcon" class="room-big-icon">
+                📖
+            </span>
+
+            <p class="small-heading">
+                YOUR LITTLE CORNER
+            </p>
+
             <h2 id="roomTitle">My Diary</h2>
-            <p id="roomDescription">A space just for you.</p>
 
-            
-<!-- DIARY EDITOR -->
-
-<div id="diaryArea" class="diary-area hidden">
-
-    <input
-        type="text"
-        id="diaryTitle"
-        placeholder="Give your entry a title..."
-    >
-
-    <textarea
-        id="diaryText"
-        placeholder="Dear diary, today I..."
-        rows="7"
-    ></textarea>
-
-    <button id="saveDiary">Save my entry ♡</button>
-
-    <p id="diaryMessage"></p>
-
-    <div class="entries-section">
-        <h3>My previous entries</h3>
-        <div id="diaryEntries"></div>
-    </div>
-
-</div>
+            <p id="roomDescription">
+                A space just for you.
+            </p>
 
 
-            <div class="coming-soon">
-                <span>✧</span>
-                <h3>Something lovely is coming.</h3>
-                <p>We're still decorating this little room.</p>
+            <!-- DIARY EDITOR -->
+            <div id="diaryArea" class="diary-area hidden">
+
+                <input
+                    type="text"
+                    id="diaryTitle"
+                    placeholder="Give your entry a title..."
+                >
+
+                <textarea
+                    id="diaryText"
+                    placeholder="Dear diary, today I..."
+                    rows="7"
+                ></textarea>
+
+                <button id="saveDiary">
+                    Save my entry ♡
+                </button>
+
+                <p id="diaryMessage"></p>
+
+                <div class="entries-section">
+
+                    <h3>My previous entries</h3>
+
+                    <div id="diaryEntries"></div>
+
+                </div>
+
             </div>
+
+
+            <!-- OTHER ROOMS -->
+            <div class="coming-soon">
+
+                <span>✧</span>
+
+                <h3>Something lovely is coming.</h3>
+
+                <p>
+                    We're still decorating this little room.
+                </p>
+
+            </div>
+
         </div>
+
     </section>
+
 
     <script src="script.js"></script>
 
