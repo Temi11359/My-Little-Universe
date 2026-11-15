@@ -97,3 +97,91 @@ backButton.addEventListener("click", function () {
     homeScreen.classList.remove("hidden");
     hideAllRooms();
 });
+
+// ================================
+// MY LITTLE UNIVERSE - AUTHENTICATION
+// ================================
+
+const authEmail = document.getElementById("authEmail");
+const authPassword = document.getElementById("authPassword");
+
+const signUpButton = document.getElementById("signUpButton");
+const loginButton = document.getElementById("loginButton");
+const logoutButton = document.getElementById("logoutButton");
+
+const authMessage = document.getElementById("authMessage");
+
+// CREATE ACCOUNT
+if (signUpButton) {
+    signUpButton.addEventListener("click", async () => {
+        const email = authEmail.value.trim();
+        const password = authPassword.value;
+
+        if (!email || !password) {
+            authMessage.textContent = "Please enter your email and password.";
+            return;
+        }
+
+        if (password.length < 6) {
+            authMessage.textContent = "Password must be at least 6 characters.";
+            return;
+        }
+
+        authMessage.textContent = "Creating your account...";
+
+        const { data, error } = await supabaseClient.auth.signUp({
+            email: email,
+            password: password
+        });
+
+        if (error) {
+            authMessage.textContent = error.message;
+            return;
+        }
+
+        authMessage.textContent = data.session
+            ? "Account created successfully! Welcome!"
+            : "Account created! Please check your email to confirm your account.";
+    });
+}
+
+// LOG IN
+if (loginButton) {
+    loginButton.addEventListener("click", async () => {
+        const email = authEmail.value.trim();
+        const password = authPassword.value;
+
+        if (!email || !password) {
+            authMessage.textContent = "Please enter your email and password.";
+            return;
+        }
+
+        authMessage.textContent = "Logging in...";
+
+        const { error } = await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+        if (error) {
+            authMessage.textContent = error.message;
+            return;
+        }
+
+        authMessage.textContent = "Welcome back!";
+    });
+}
+
+// LOG OUT
+if (logoutButton) {
+    logoutButton.addEventListener("click", async () => {
+        const { error } = await supabaseClient.auth.signOut();
+
+        if (error) {
+            alert(error.message);
+            return;
+        }
+
+        location.reload();
+    });
+}
