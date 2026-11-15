@@ -77,6 +77,7 @@ roomCards.forEach(function (card) {
 
         diaryArea.classList.add("hidden");
         memoryArea.classList.add("hidden");
+        dreamsArea.classlist.add("hidden");
         comingSoon.classList.remove("hidden");
 
         if (selectedRoom === "diary") {
@@ -89,6 +90,11 @@ if (selectedRoom === "memories") {
     comingSoon.classList.add("hidden");
     displayMemories();
 }
+        if (selectedRoom === "dreams") {
+    dreamsArea.classList.remove("hidden");
+    comingSoon.style.display = "none";
+    displayDreams();
+        }
     });
 
 });
@@ -252,5 +258,98 @@ function displayMemories() {
         card.appendChild(paragraph);
 
         memoryEntries.appendChild(card);
+    });
+}
+
+// MY DREAMS ROOM
+
+const dreamsArea = document.getElementById("dreamsArea");
+const dreamTitle = document.getElementById("dreamTitle");
+const dreamDescription = document.getElementById("dreamDescription");
+const saveDream = document.getElementById("saveDream");
+const dreamMessage = document.getElementById("dreamMessage");
+const dreamEntries = document.getElementById("dreamEntries");
+
+
+// GET SAVED DREAMS
+function getDreams() {
+    return JSON.parse(localStorage.getItem("myDreams")) || [];
+}
+
+
+// SAVE A DREAM
+saveDream.addEventListener("click", function () {
+
+    const title = dreamTitle.value.trim();
+    const description = dreamDescription.value.trim();
+
+    if (!title || !description) {
+        dreamMessage.textContent = "Please fill in both fields.";
+        return;
+    }
+
+    const dreams = getDreams();
+
+    dreams.unshift({
+        title: title,
+        description: description,
+        completed: false
+    });
+
+    localStorage.setItem("myDreams", JSON.stringify(dreams));
+
+    dreamTitle.value = "";
+    dreamDescription.value = "";
+
+    dreamMessage.textContent = "Dream added successfully!";
+
+    displayDreams();
+});
+
+
+// DISPLAY DREAMS
+function displayDreams() {
+
+    const dreams = getDreams();
+
+    dreamEntries.innerHTML = "";
+
+    if (dreams.length === 0) {
+        dreamEntries.textContent = "Your dream board is waiting for you.";
+        return;
+    }
+
+    dreams.forEach(function (dream, index) {
+
+        const card = document.createElement("div");
+        card.className = "diary-entry";
+
+        const heading = document.createElement("h4");
+        heading.textContent = dream.title;
+
+        const description = document.createElement("p");
+        description.textContent = dream.description;
+
+        const status = document.createElement("p");
+        status.textContent = dream.completed ? "Completed ✓" : "Still dreaming...";
+
+        const button = document.createElement("button");
+        button.textContent = dream.completed ? "Mark as unfinished" : "Mark as completed";
+
+        button.addEventListener("click", function () {
+
+            dreams[index].completed = !dreams[index].completed;
+
+            localStorage.setItem("myDreams", JSON.stringify(dreams));
+
+            displayDreams();
+        });
+
+        card.appendChild(heading);
+        card.appendChild(description);
+        card.appendChild(status);
+        card.appendChild(button);
+
+        dreamEntries.appendChild(card);
     });
 }
