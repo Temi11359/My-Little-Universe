@@ -89,14 +89,38 @@
                 </div>
             </div>
 
-            <div class="coming-soon">
-                <span>✧</span>
-                <h3>Something lovely is coming.</h3>
-                <p>We're still decorating this little room.</p>
-            </div>
+            <div id="memoryArea" class="memory-area hidden">
+
+    <input
+        type="text"
+        id="memoryTitle"
+        placeholder="What should we call this memory?"
+    >
+
+    <textarea
+        id="memoryText"
+        placeholder="Tell the story behind this moment..."
+        rows="5"
+    ></textarea>
+
+    <button id="saveMemory">Save this memory</button>
+
+    <p id="memoryMessage"></p>
+
+    <div class="entries-section">
+        <h3>Moments I've kept</h3>
+        <div id="memoryEntries"></div>
+    </div>
+
+</div>
+
+<div class="coming-soon">
+    <span>✧</span>
+    <h3>Something lovely is coming.</h3>
+    <p>We're still decorating this little room.</p>
+</div>
         </div>
     </section>
-
     <script src="script.js"></script>
 
 </body>
