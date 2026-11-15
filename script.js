@@ -58,7 +58,7 @@ enterButton.addEventListener("click", function () {
 });
 
 
-// OPEN A ROOM
+
 roomCards.forEach(function (card) {
 
     card.addEventListener("click", function () {
@@ -75,11 +75,44 @@ roomCards.forEach(function (card) {
         roomTitle.textContent = room.title;
         roomDescription.textContent = room.description;
 
+        // Hide all room sections first
         diaryArea.classList.add("hidden");
         memoryArea.classList.add("hidden");
-        dreamsArea.classlist.add("hidden");
+        dreamsArea.classList.add("hidden");
         favouritesArea.classList.add("hidden");
-        comingSoon.classList.remove("hidden");
+
+        // Show Coming Soon only for unfinished rooms
+        comingSoon.style.display = "block";
+
+        if (selectedRoom === "diary") {
+            diaryArea.classList.remove("hidden");
+            comingSoon.style.display = "none";
+            displayDiaryEntries();
+        }
+
+        if (selectedRoom === "memories") {
+            memoryArea.classList.remove("hidden");
+            comingSoon.style.display = "none";
+            displayMemories();
+        }
+
+        if (selectedRoom === "dreams") {
+            dreamsArea.classList.remove("hidden");
+            comingSoon.style.display = "none";
+            displayDreams();
+        }
+
+        if (selectedRoom === "favourites") {
+            favouritesArea.classList.remove("hidden");
+            comingSoon.style.display = "none";
+            displayFavourites();
+        }
+
+    });
+
+});
+
+    
 
         if (selectedRoom === "diary") {
             diaryArea.classList.remove("hidden");
