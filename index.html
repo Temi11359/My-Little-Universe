@@ -12,14 +12,30 @@
     <body>
 
     <section id="welcomeScreen" class="welcome-screen">
-        <div class="welcome-content">
-            <p class="eyebrow">A LITTLE PLACE CALLED MINE</p>
-            <h1>My Little Universe</h1>
-            <p>Little moments, big memories, and everything in between.</p>
-            <button id="enterButton">Enter my world</button>
-        </div>
-    </section>
+    <div class="welcome-content">
+        <p class="eyebrow">A LITTLE PLACE CALLED MINE</p>
+        <h1>My Little Universe</h1>
+        <p>Little moments, big memories, and everything in between.</p>
+        <button id="enterButton">Enter my world</button>
+    </div>
+</section>
 
+<!-- ACCOUNT SCREEN -->
+<section id="authScreen" class="auth-screen" style="display: none;">
+    <div class="auth-content">
+        <h2>Welcome to your universe</h2>
+        <p>Create an account or sign in to continue.</p>
+
+        <input type="email" id="authEmail" placeholder="Your email address">
+
+        <input type="password" id="authPassword" placeholder="Your password">
+
+        <button id="signUpButton">Create account</button>
+        <button id="loginButton">Log in</button>
+
+        <p id="authMessage"></p>
+    </div>
+</section> 
     <main id="homeScreen" class="home-screen hidden">
 
         <header class="top-bar">
