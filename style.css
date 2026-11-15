@@ -890,3 +890,167 @@ body {
         transition-duration: 0.01ms !important;
     }
 }
+
+
+/* =================================
+   SCRAPBOOK HOMEPAGE DESIGN
+================================= */
+
+/* HERO LAYOUT */
+
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 0.85fr;
+    align-items: center;
+    gap: 25px;
+}
+
+/* HERO IMAGE */
+
+.hero-image {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    padding: 9px;
+    background: #fffafc;
+    border: 1px solid #e9cedd;
+    border-radius: 22px;
+    box-shadow: 0 15px 35px #8b536a25;
+    transform: rotate(2deg);
+    animation: imageAppear 1.2s ease both;
+}
+
+.hero-image img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 15px;
+}
+
+/* LIVE CLOCK */
+
+.hero-clock {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 25px;
+    padding: 15px 18px;
+    max-width: 230px;
+    background: #f1e2f1;
+    border: 1px solid #e8d3e9;
+    border-radius: 16px;
+}
+
+.hero-clock span {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    color: #927398;
+}
+
+.hero-clock strong {
+    font-size: 21px;
+    color: #694a70;
+    letter-spacing: 2px;
+}
+
+/* FLOATING DECORATIONS */
+
+.floating-decoration {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+    color: #bd8ab9;
+    animation: gentleFloat 4s ease-in-out infinite;
+}
+
+.decoration-one {
+    top: 210px;
+    right: 12%;
+    font-size: 28px;
+}
+
+.decoration-two {
+    top: 500px;
+    left: 5%;
+    font-size: 25px;
+    animation-delay: 1s;
+}
+
+.decoration-three {
+    top: 750px;
+    right: 8%;
+    font-size: 30px;
+    animation-delay: 2s;
+}
+
+.decoration-four {
+    top: 950px;
+    left: 8%;
+    font-size: 25px;
+    animation-delay: 1.5s;
+}
+
+/* DAILY QUOTE BUTTON */
+
+.daily-note button {
+    display: block;
+    margin: 18px auto 0;
+    padding: 11px 20px;
+    border: 1px solid #d8bddf;
+    border-radius: 25px;
+    background: #fff9fd;
+    color: #805d8b;
+    font-size: 12px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.daily-note button:hover {
+    background: #e9d8ef;
+    transform: translateY(-3px);
+}
+
+/* IMAGE ENTRANCE */
+
+@keyframes imageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(25px) rotate(0deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(2deg);
+    }
+}
+
+/* MOBILE LAYOUT */
+
+@media (max-width: 650px) {
+
+    .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 30px;
+    }
+
+    .hero-image {
+        max-width: 340px;
+        width: 90%;
+    }
+
+    .hero-clock {
+        max-width: 100%;
+    }
+
+    .decoration-one {
+        top: 350px;
+    }
+
+    .decoration-two {
+        top: 650px;
+    }
+}
