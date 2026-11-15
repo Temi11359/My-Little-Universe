@@ -139,11 +139,50 @@
 
 </div>
 
+
+<div id="favouritesArea" class="favourites-area hidden">
+
+    <input
+        type="text"
+        id="favouriteTitle"
+        placeholder="What is your favourite thing?"
+    >
+
+    <select id="favouriteCategory">
+        <option value="">Choose a category</option>
+        <option value="Food">Food</option>
+        <option value="Music">Music</option>
+        <option value="Movies">Movies</option>
+        <option value="Books">Books</option>
+        <option value="Scents">Scents</option>
+        <option value="Places">Places</option>
+        <option value="Quotes">Quotes</option>
+        <option value="Other">Other</option>
+    </select>
+
+    <textarea
+        id="favouriteDescription"
+        placeholder="Why do you love it?"
+        rows="4"
+    ></textarea>
+
+    <button id="saveFavourite">Add to my collection</button>
+
+    <p id="favouriteMessage"></p>
+
+    <div class="entries-section">
+        <h3>Things I adore</h3>
+        <div id="favouriteEntries"></div>
+    </div>
+
+</div>
+
 <div class="coming-soon">
     <span>✧</span>
     <h3>Something lovely is coming.</h3>
     <p>We're still decorating this little room.</p>
 </div>
+
         </div>
     </section>
     <script src="script.js"></script>
