@@ -1,13 +1,20 @@
 
 const welcomeScreen = document.getElementById("welcomeScreen");
+const authScreen = document.getElementById("authScreen");
 const homeScreen = document.getElementById("homeScreen");
 const roomScreen = document.getElementById("roomScreen");
 
 const enterButton = document.getElementById("enterButton");
 const backButton = document.getElementById("backButton");
 
+const authEmail = document.getElementById("authEmail");
+const authPassword = document.getElementById("authPassword");
+const signUpButton = document.getElementById("signUpButton");
+const loginButton = document.getElementById("loginButton");
+const logoutButton = document.getElementById("logoutButton");
+const authMessage = document.getElementById("authMessage");
+
 const roomCards = document.querySelectorAll(".room-card");
-console.log("Room buttons found:", roomCards.length);
 
 const roomIcon = document.getElementById("roomIcon");
 const roomTitle = document.getElementById("roomTitle");
@@ -44,8 +51,6 @@ const rooms = {
 
 // OPEN ACCOUNT SCREEN
 
-const authScreen = document.getElementById("authScreen");
-
 enterButton.addEventListener("click", function () {
     welcomeScreen.classList.add("hidden");
     authScreen.style.display = "block";
@@ -65,7 +70,6 @@ function hideAllRooms() {
 
 roomCards.forEach(function (card) {
     card.addEventListener("click", function () {
-
         const selectedRoom = card.dataset.room;
         const room = rooms[selectedRoom];
 
@@ -100,198 +104,95 @@ backButton.addEventListener("click", function () {
     hideAllRooms();
 });
 
-// ================================
-// MY LITTLE UNIVERSE - AUTHENTICATION
-// ================================
-
-const authEmail = document.getElementById("authEmail");
-const authPassword = document.getElementById("authPassword");
-
-const signUpButton = document.getElementById("signUpButton");
-const loginButton = document.getElementById("loginButton");
-const logoutButton = document.getElementById("logoutButton");
-
-const authMessage = document.getElementById("authMessage");
-
 // CREATE ACCOUNT
-if (signUpButton) {
-    signUpButton.addEventListener("click", async () => {
-        const email = authEmail.value.trim();
-        const password = authPassword.value;
 
-        if (!email || !password) {
-            authMessage.textContent = "Please enter your email and password.";
-            return;
-        }
+signUpButton.addEventListener("click", async function () {
+    const email = authEmail.value.trim();
+    const password = authPassword.value;
 
-        if (password.length < 6) {
-            authMessage.textContent = "Password must be at least 6 characters.";
-            return;
-        }
+    if (!email || !password) {
+        authMessage.textContent = "Please enter your email and password.";
+        return;
+    }
 
-        authMessage.textContent = "Creating your account...";
+    if (password.length < 6) {
+        authMessage.textContent = "Password must be at least 6 characters.";
+        return;
+    }
 
-        const { data, error } = await supabaseClient.auth.signUp({
-            email: email,
-            password: password
-        });
+    authMessage.textContent = "Creating your account...";
 
-        if (error) {
-            authMessage.textContent = error.message;
-            return;
-        }
-
-        authMessage.textContent = data.session
-            ? "Account created successfully! Welcome!"
-            : "Account created! Please check your email to confirm your account.";
+    const { data, error } = await supabaseClient.auth.signUp({
+        email,
+        password
     });
-}
+
+    if (error) {
+        authMessage.textContent = error.message;
+        return;
+    }
+
+    if (data.session) {
+        authMessage.textContent = "Account created successfully!";
+        authScreen.style.display = "none";
+        homeScreen.classList.remove("hidden");
+    } else {
+        authMessage.textContent = "Account created! Check your email to confirm it.";
+    }
+});
 
 // LOG IN
-if (loginButton) {
-    loginButton.addEventListener("click", async () => {
-        const email = authEmail.value.trim();
-        const password = authPassword.value;
 
-        if (!email || !password) {
-            authMessage.textContent = "Please enter your email and password.";
-            return;
-        }
+loginButton.addEventListener("click", async function () {
+    const email = authEmail.value.trim();
+    const password = authPassword.value;
 
-        authMessage.textContent = "Logging in...";
+    if (!email || !password) {
+        authMessage.textContent = "Please enter your email and password.";
+        return;
+    }
 
-        const { error } = await supabaseClient.auth.signInWithPassword({
-            email: email,
-            password: password
-        });
+    authMessage.textContent = "Logging in...";
 
-        if (error) {
-            authMessage.textContent = error.message;
-            return;
-        }
-
-        authMessage.textContent = "Welcome back!";
-                }
-
-        authMessage.textContent = "Logging in...";
-
-        const { error } = await supabaseClient.auth.signInWithPassword({
-            email: email,
-            password: password
-        });
-
-        if (error) {
-            authMessage.textContent = error.message;
-            return;
-        }
-
-        authMessage.textContent = "Welcome back!";
-            }
-
-        authMessage.textContent = "Logging in...";
-
-        const { error } = await supabaseClient.auth.signInWithPassword({
-            email: email,
-            password: password
-        });
-
-        if (error) {
-            authMessage.textContent = error.message;
-            return;
-        }
-
-        authMessage.textContent = "Welcome back!";
-
-        }
-
-        authMessage.textContent = "Logging in...";
-
-        const { error } = await supabaseClient.auth.signInWithPassword({
-            email: email,
-            password: password
-        });
-
-        if (error) {
-            authMessage.textContent = error.message;
-            return;
-        }
-
-        authMessage.textContent = "Welcome back!";
-authScreen.style.display = "none";
-homeScreen.classList.remove("hidden");
+    const { error } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password
     });
-}
+
+    if (error) {
+        authMessage.textContent = error.message;
+        return;
+    }
+
+    authMessage.textContent = "Welcome back!";
+    authScreen.style.display = "none";
+    homeScreen.classList.remove("hidden");
+});
 
 // LOG OUT
-if (logoutButton) {
-    logoutButton.addEventListener("click", async () => {
-        const { error } = await supabaseClient.auth.signOut();
 
-        if (error) {
-            alert(error.message);
-            return;
-        }
+logoutButton.addEventListener("click", async function () {
+    const { error } = await supabaseClient.auth.signOut();
 
-        location.reload();
-    });
-}
+    if (error) {
+        alert(error.message);
+        return;
+    }
 
-    });
-}
+    location.reload();
+});
 
-// LOG OUT
-if (logoutButton) {
-    logoutButton.addEventListener("click", async () => {
-        const { error } = await supabaseClient.auth.signOut();
-
-        if (error) {
-            alert(error.message);
-            return;
-        }
-
-        location.reload();
-    });
-}
-
-    });
-}
-
-// LOG OUT
-if (logoutButton) {
-    logoutButton.addEventListener("click", async () => {
-        const { error } = await supabaseClient.auth.signOut();
-
-        if (error) {
-            alert(error.message);
-            return;
-        }
-
-        location.reload();
-    });
-}
-
-    });
-}
-
-// LOG OUT
-if (logoutButton) {
-    logoutButton.addEventListener("click", async () => {
-        const { error } = await supabaseClient.auth.signOut();
-
-        if (error) {
-            alert(error.message);
-            return;
-        }
-
-        location.reload();
-    });
-}
 // CHECK EXISTING LOGIN SESSION
 
 async function checkLogin() {
-    const { data: { session } } = await supabaseClient.auth.getSession();
+    const { data, error } = await supabaseClient.auth.getSession();
 
-    if (session) {
+    if (error) {
+        console.error(error);
+        return;
+    }
+
+    if (data.session) {
         welcomeScreen.classList.add("hidden");
         authScreen.style.display = "none";
         homeScreen.classList.remove("hidden");
