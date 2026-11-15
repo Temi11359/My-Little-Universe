@@ -531,3 +531,362 @@ button {
     width: auto !important;
     font-size: 11px;
 }
+
+/* =================================
+   MY LITTLE UNIVERSE - VISUAL UPGRADE
+================================= */
+
+body {
+    background: #f9eff8;
+    color: #503951;
+    overflow-x: hidden;
+}
+
+/* DREAMY BACKGROUND */
+
+.home-screen,
+.room-screen {
+    position: relative;
+    isolation: isolate;
+    background:
+        radial-gradient(ellipse at 10% 15%, #f0d9f4 0%, transparent 38%),
+        radial-gradient(ellipse at 90% 45%, #f9dce8 0%, transparent 35%),
+        radial-gradient(ellipse at 40% 95%, #e9e3fa 0%, transparent 40%),
+        #fcf6fb;
+}
+
+.home-screen::before,
+.room-screen::before {
+    content: "✦     ✧       ⋆       ✧";
+    position: absolute;
+    top: 130px;
+    right: 15px;
+    color: #c69bce;
+    font-size: 23px;
+    letter-spacing: 12px;
+    opacity: 0.5;
+    pointer-events: none;
+    animation: floatStars 5s ease-in-out infinite;
+    z-index: -1;
+}
+
+/* TOP BAR */
+
+.top-bar {
+    border-bottom: 1px solid #e8d5e9;
+    padding-bottom: 22px;
+}
+
+.logo {
+    font-size: 21px;
+    color: #694a70;
+    letter-spacing: -0.8px;
+}
+
+.top-note {
+    font-family: Georgia, serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #91669d;
+    letter-spacing: 0.3px;
+}
+
+/* HERO SECTION */
+
+.hero {
+    padding-top: 65px;
+    padding-bottom: 55px;
+    animation: fadeUp 1s ease both;
+}
+
+.small-heading {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #a174a8;
+    font-weight: 700;
+}
+
+.hero h2 {
+    font-size: clamp(38px, 9vw, 55px);
+    line-height: 1.15;
+    color: #533b59;
+    margin-bottom: 20px;
+}
+
+.hero > p:last-child {
+    font-size: 15px;
+    line-height: 2;
+    color: #806b85;
+}
+
+/* ROOMS HEADING */
+
+.section-heading {
+    margin-bottom: 25px;
+}
+
+.section-heading h3 {
+    font-size: 27px;
+    color: #543b5b;
+}
+
+.sparkle {
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+/* ROOM CARDS */
+
+.rooms-grid {
+    gap: 16px;
+}
+
+.room-card {
+    min-height: 190px;
+    padding: 22px 17px;
+    border: 1px solid #ffffffa8;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px #80608012;
+    overflow: hidden;
+    animation: fadeUp 0.8s ease both;
+}
+
+.room-card:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.room-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.room-card:nth-child(4) {
+    animation-delay: 0.45s;
+}
+
+.room-card::after {
+    content: "✧";
+    position: absolute;
+    right: -5px;
+    bottom: -22px;
+    font-size: 95px;
+    color: #ffffff;
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.room-card:hover {
+    transform: translateY(-7px) scale(1.02);
+    box-shadow: 0 15px 30px #80608025;
+}
+
+.diary {
+    background: linear-gradient(145deg, #f1e1f7, #e8d8f1);
+}
+
+.memories {
+    background: linear-gradient(145deg, #fbe7ed, #f5dce7);
+}
+
+.dreams {
+    background: linear-gradient(145deg, #e9eafa, #dedff4);
+}
+
+.favourites {
+    background: linear-gradient(145deg, #fbefd9, #f5e4c8);
+}
+
+.room-icon {
+    font-size: 34px;
+    margin-bottom: 18px;
+    animation: gentleFloat 4s ease-in-out infinite;
+}
+
+.room-name {
+    font-size: 19px;
+    color: #543c5a;
+}
+
+.room-description {
+    font-size: 11px;
+    color: #806c86;
+    line-height: 1.6;
+}
+
+.room-arrow {
+    font-size: 20px;
+}
+
+/* DAILY NOTE */
+
+.daily-note {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #eee0f4, #f8e5ed);
+    border: 1px solid #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 8px 25px #80608012;
+    padding: 28px 20px;
+}
+
+.daily-note::before {
+    content: "♡";
+    position: absolute;
+    right: 15px;
+    top: -15px;
+    font-size: 85px;
+    color: #ffffff;
+    opacity: 0.4;
+}
+
+.daily-note p {
+    position: relative;
+    color: #624969;
+}
+
+/* FOOTER */
+
+.home-footer {
+    color: #9a7c9f;
+    letter-spacing: 0.5px;
+}
+
+/* ROOM PAGE */
+
+.room-screen {
+    background-color: #fbf4fa;
+}
+
+.room-content {
+    animation: fadeUp 0.7s ease both;
+}
+
+.room-big-icon {
+    animation: gentleFloat 3s ease-in-out infinite;
+}
+
+.room-content h2 {
+    font-weight: 700;
+    color: #583e60;
+}
+
+.coming-soon {
+    background: linear-gradient(135deg, #f0e1f5, #f9e6ee);
+    border: 1px solid #ffffff;
+    box-shadow: 0 8px 25px #80608012;
+}
+
+/* DIARY UPGRADE */
+
+.diary-area input,
+.diary-area textarea {
+    border: 1px solid #e6d5ea;
+    border-radius: 17px;
+    background: #fffaff;
+    box-shadow: 0 4px 15px #8060800b;
+}
+
+.diary-area button {
+    box-shadow: 0 6px 16px #a987b844;
+    transition: 0.3s ease;
+}
+
+.diary-area button:hover {
+    background: #805e91;
+    transform: translateY(-2px);
+}
+
+.diary-entry {
+    background: linear-gradient(135deg, #f3e7f6, #fbe9ef);
+    border: 1px solid #ffffff;
+    box-shadow: 0 5px 15px #80608010;
+}
+
+/* BACK BUTTON */
+
+.back-button {
+    font-weight: 700;
+    transition: 0.3s ease;
+}
+
+.back-button:hover {
+    background: #eee1f2;
+    transform: translateX(-3px);
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes gentleFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+@keyframes floatStars {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(8deg);
+    }
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 380px) {
+    .logo {
+        font-size: 17px;
+    }
+
+    .top-note {
+        font-size: 11px;
+    }
+
+    .room-card {
+        min-height: 165px;
+        padding: 17px 12px;
+    }
+
+    .room-name {
+        font-size: 16px;
+    }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
