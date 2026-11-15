@@ -7,8 +7,9 @@
     <meta name="theme-color" content="#f5e5e9">
     <title>My Little Universe</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <body>
 
     <section id="welcomeScreen" class="welcome-screen">
@@ -38,10 +39,11 @@
 </section> 
     <main id="homeScreen" class="home-screen hidden">
 
-        <header class="top-bar">
-            <h2>My Little Universe</h2>
-            <span>A world of my own</span>
-        </header>
+    <header class="top-bar">
+    <h2>My Little Universe</h2>
+    <span>A world of my own</span>
+    <button id="logoutButton">Log out</button>
+    </header>
 
         <section class="hero">
             <p class="eyebrow">WELCOME TO MY WORLD</p>
