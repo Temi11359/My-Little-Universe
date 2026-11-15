@@ -76,6 +76,7 @@ roomCards.forEach(function (card) {
         roomDescription.textContent = room.description;
 
         diaryArea.classList.add("hidden");
+        memoryArea.classList.add("hidden");
         comingSoon.classList.remove("hidden");
 
         if (selectedRoom === "diary") {
@@ -83,7 +84,11 @@ roomCards.forEach(function (card) {
             comingSoon.classList.add("hidden");
             displayDiaryEntries();
         }
-
+if (selectedRoom === "memories") {
+    memoryArea.classList.remove("hidden");
+    comingSoon.classList.add("hidden");
+    displayMemories();
+}
     });
 
 });
@@ -169,4 +174,83 @@ function displayDiaryEntries() {
 
     });
 
+}
+
+// MEMORIES ROOM
+const memoryArea = document.getElementById("memoryArea");
+const memoryTitle = document.getElementById("memoryTitle");
+const memoryText = document.getElementById("memoryText");
+const saveMemory = document.getElementById("saveMemory");
+const memoryMessage = document.getElementById("memoryMessage");
+const memoryEntries = document.getElementById("memoryEntries");
+
+
+// GET SAVED MEMORIES
+function getMemories() {
+    return JSON.parse(localStorage.getItem("myMemories")) || [];
+}
+
+
+// SAVE A MEMORY
+saveMemory.addEventListener("click", function () {
+
+    const title = memoryTitle.value.trim();
+    const content = memoryText.value.trim();
+
+    if (!title || !content) {
+        memoryMessage.textContent = "Please fill in both fields first.";
+        return;
+    }
+
+    const memories = getMemories();
+
+    memories.unshift({
+        title: title,
+        content: content,
+        date: new Date().toLocaleDateString()
+    });
+
+    localStorage.setItem("myMemories", JSON.stringify(memories));
+
+    memoryTitle.value = "";
+    memoryText.value = "";
+
+    memoryMessage.textContent = "Memory saved successfully!";
+
+    displayMemories();
+});
+
+
+// DISPLAY SAVED MEMORIES
+function displayMemories() {
+
+    const memories = getMemories();
+
+    memoryEntries.innerHTML = "";
+
+    if (memories.length === 0) {
+        memoryEntries.textContent = "No memories saved yet.";
+        return;
+    }
+
+    memories.forEach(function (memory) {
+
+        const card = document.createElement("div");
+        card.className = "diary-entry";
+
+        const heading = document.createElement("h4");
+        heading.textContent = memory.title;
+
+        const date = document.createElement("small");
+        date.textContent = memory.date;
+
+        const paragraph = document.createElement("p");
+        paragraph.textContent = memory.content;
+
+        card.appendChild(heading);
+        card.appendChild(date);
+        card.appendChild(paragraph);
+
+        memoryEntries.appendChild(card);
+    });
 }
