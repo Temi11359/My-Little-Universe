@@ -78,6 +78,7 @@ roomCards.forEach(function (card) {
         diaryArea.classList.add("hidden");
         memoryArea.classList.add("hidden");
         dreamsArea.classlist.add("hidden");
+        favouritesArea.classList.add("hidden");
         comingSoon.classList.remove("hidden");
 
         if (selectedRoom === "diary") {
@@ -95,7 +96,13 @@ if (selectedRoom === "memories") {
     comingSoon.style.display = "none";
     displayDreams();
         }
+        if (selectedRoom === "favourites") {
+    favouritesArea.classList.remove("hidden");
+    comingSoon.style.display = "none";
+    displayFavourites();
+        }
     });
+
 
 });
 
@@ -351,5 +358,88 @@ function displayDreams() {
         card.appendChild(button);
 
         dreamEntries.appendChild(card);
+    });
+}
+
+// LITTLE THINGS ROOM
+
+const favouritesArea = document.getElementById("favouritesArea");
+const favouriteTitle = document.getElementById("favouriteTitle");
+const favouriteCategory = document.getElementById("favouriteCategory");
+const favouriteDescription = document.getElementById("favouriteDescription");
+const saveFavourite = document.getElementById("saveFavourite");
+const favouriteMessage = document.getElementById("favouriteMessage");
+const favouriteEntries = document.getElementById("favouriteEntries");
+
+
+// GET SAVED FAVOURITES
+function getFavourites() {
+    return JSON.parse(localStorage.getItem("myFavourites")) || [];
+}
+
+
+// SAVE A FAVOURITE
+saveFavourite.addEventListener("click", function () {
+
+    const title = favouriteTitle.value.trim();
+    const category = favouriteCategory.value;
+    const description = favouriteDescription.value.trim();
+
+    if (!title || !category || !description) {
+        favouriteMessage.textContent = "Please complete all the fields.";
+        return;
+    }
+
+    const favourites = getFavourites();
+
+    favourites.unshift({
+        title: title,
+        category: category,
+        description: description
+    });
+
+    localStorage.setItem("myFavourites", JSON.stringify(favourites));
+
+    favouriteTitle.value = "";
+    favouriteCategory.value = "";
+    favouriteDescription.value = "";
+
+    favouriteMessage.textContent = "Added to your little collection!";
+
+    displayFavourites();
+});
+
+
+// DISPLAY FAVOURITES
+function displayFavourites() {
+
+    const favourites = getFavourites();
+
+    favouriteEntries.innerHTML = "";
+
+    if (favourites.length === 0) {
+        favouriteEntries.textContent = "Your collection is waiting for lovely things.";
+        return;
+    }
+
+    favourites.forEach(function (item) {
+
+        const card = document.createElement("div");
+        card.className = "diary-entry";
+
+        const heading = document.createElement("h4");
+        heading.textContent = item.title;
+
+        const category = document.createElement("small");
+        category.textContent = item.category;
+
+        const description = document.createElement("p");
+        description.textContent = item.description;
+
+        card.appendChild(heading);
+        card.appendChild(category);
+        card.appendChild(description);
+
+        favouriteEntries.appendChild(card);
     });
 }
