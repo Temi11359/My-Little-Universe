@@ -122,10 +122,15 @@ signUpButton.addEventListener("click", async function () {
 
     authMessage.textContent = "Creating your account...";
 
-    const { data, error } = await supabaseClient.auth.signUp({
-        email,
-        password
-    });
+
+const { data, error } = await supabaseClient.auth.signUp({
+    email,
+    password,
+    options: {
+        emailRedirectTo: `${window.location.origin}${window.location.pathname}`
+    }
+});
+
 
     if (error) {
         authMessage.textContent = error.message;
